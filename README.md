@@ -1,1 +1,1 @@
-# postcss-alter-property-value
+# postcss alter property value
