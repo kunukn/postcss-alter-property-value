@@ -1,0 +1,23 @@
+{
+  "name": "postcss-alter-property-value",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunukn/postcss-alter-property-value.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kunukn/postcss-alter-property-value/issues"
+  },
+  "homepage": "https://github.com/kunukn/postcss-alter-property-value#readme",
+  "devDependencies": {
+    "postcss": "^5.2.15"
+  }
+}
