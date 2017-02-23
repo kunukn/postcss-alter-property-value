@@ -1,38 +1,30 @@
 module.exports = {
   plugins: [
     require('./postcss-alter-property-value.js')(
-      { 
-      'border-radius': null, 
-      'display':'flex',
-      'content': '""',
-      'content': "''", 
-      'box-shadow': null,
-      
+      {             
       'color': {
-        type: 'changeValue',
-        whenValueEquals: 'red',
+        task: 'changeValue',        
+        whenRegex: {
+          value: 'blue$',
+          flags: 'i',
+        },
         to: 'orange'
       },
       'mouse': {
-        type: 'changeProp',
-        forAllValues: true,
+        task: 'changeProp',        
         to: 'cursor'
       },
       'background-color': {
-        type: 'disable',
-        whenValueEquals: 'red'
+        task: 'disable',
+        whenValueRegex: '^dark'
       },
       'font-size': {
-        type: 'changeValue',
-        forAllValues: true,
+        task: 'changeValue',        
         to: '3rem',
       },
-      'outline': {
-        type: 'remove',
-        forAllValues: true
-      },
+      'outline': { task: 'remove'},
       'border': {
-        type: 'remove',
+        task: 'remove',
         whenValueEquals: '1px solid black'
       },
     }),  

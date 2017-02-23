@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+    background: gold;
+    background-color: darkred;
+    margin: 0;    
+    mouse: pointer;
+}
+
+div {
+    font-size: 2rem;    
+    background: white;    
+    padding: 1rem;        
+    color: dodgerblue;
+    outline: 13px dashed blue;
+    border: 1px solid black;
+}
