@@ -29,7 +29,7 @@ declarations: {
   },
   'transform': {
     task: 'cloneBefore',
-    to: '-webkit-transform'
+    to: '-webkit-transform' // add vendor prefix
   },             
   'display': {
     task: 'changeValue',
@@ -45,8 +45,8 @@ declarations: {
     task: 'changeValue',
     to: 'orange',
     whenRegex: {
-      value: 'blue$', // lightblue and dodgerblue are changed
-      flags: 'i',
+      value: 'blue$', // change colors ending with value: blue, e.g. lightblue
+      flags: 'i', // ignore case
     },            
   },
   'font-size': {
@@ -73,7 +73,7 @@ body {
     mouse: pointer;
     max-width: 1200px;
     margin: 0 auto;
-    color: lightblue;
+    color: LightbluE;
 }
 
 p {    
@@ -96,7 +96,7 @@ body {
     cursor: pointer /* papv - changeProp from [mouse] */;
     max-width: 1200px;
     margin: 0 auto;
-    color: orange /* papv - changeValue from [lightblue] */;
+    color: orange /* papv - changeValue from [LightbluE] */;
 }
 
 p {    
@@ -116,3 +116,4 @@ p {
 * Git clone the project or download it
 * npm install
 * npm start
+* Open dev tools in browser and inspect the DOM
