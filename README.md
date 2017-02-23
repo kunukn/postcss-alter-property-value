@@ -70,7 +70,7 @@ body {
     mouse: pointer;
     max-width: 1200px;
     margin: 0 auto;
-    color: lightblue;        
+    color: lightblue;
 }
 
 p {    
@@ -78,7 +78,7 @@ p {
     background: #fff;
     padding: 1rem;    
     color: dodgerblue;    
-    outline: 13px dashed blue;
+    outline: 13px dashed red;
     border: 1px solid black;
     display: inline-flex;
     transform: translateY(10px);
