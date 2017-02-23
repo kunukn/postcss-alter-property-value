@@ -1,20 +1,18 @@
 body {
     font-family: sans-serif;
-    background: gold;
-    background-color: darkred;
-    margin: 0;
+    background: #FFD700;
     mouse: pointer;
     max-width: 1200px;
     margin: 0 auto;
+    color: white;    
 }
 
-p {
-    position: relative;
-    display: block;
+p {    
     font-size: 1rem;
-    background: white;
-    padding: 1rem;
-    color: dodgerblue;
+    background: #fff;
+    padding: 1rem;    
+    color: dodgerblue;    
     outline: 13px dashed blue;
     border: 1px solid black;
+    display: inline-flex;
 }
