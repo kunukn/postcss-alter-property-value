@@ -21,6 +21,9 @@ https://www.npmjs.com/package/postcss-alter-property-value
 Check the postcss.config.js file for inspiration
 
 ```javascript
+config: {
+  addInfo: true, // add debug info
+},
 declarations: {
   'border': '10px', // if value is type string, all properties will be set with this    
   'mouse': {
@@ -29,7 +32,7 @@ declarations: {
   },
   'transform': {
     task: 'cloneBefore',
-    to: '-webkit-transform' // add vendor prefix
+    to: '-webkit-transform' // add vendor prefix clone
   },             
   'display': {
     task: 'changeValue',
@@ -81,8 +84,8 @@ p {
     background: #fff;
     padding: 1rem;    
     color: dodgerblue;    
-    outline: 13px dashed red;
-    border: 1px solid black;
+    outline: 13px dashed red;     /* this will be remove */
+    border: 1px solid black;      /* this will be remove */
     display: inline-flex;
     transform: translateY(10px);
 }
