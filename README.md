@@ -91,7 +91,7 @@ p {
 }
 ```
 
-Is modified changed to
+Is modified to
 ```css
 body {
     font-family: sans-serif;
