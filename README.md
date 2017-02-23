@@ -2,19 +2,22 @@
 Alter your css property names or values.
 
 # about
-A tool to simulate the browser behaviour if certain properties are missing.
-Remove/change unwanted properties.
+A tool to change the css declarations
+* Change property name
+* Change value
+* Clone declaration with a new property name
 
-e.g. 
+Usage examples. 
 * Simulate flexbox not working by disabling `display: flex`
-* Remove all outlines `outline: 1px solid red`
-* Change property names `mouse: pointer -> cursor: pointer`
+* Remove all `outline` usage
+* Correct property name `mouse: pointer` to `cursor: pointer`
+* Simplify `background: #ddd` to `background-color: #ddd` if the value is a hex color
 
 # npm
 https://www.npmjs.com/package/postcss-alter-property-value
 
 
-# usage
+# configuration example
 Check the postcss.config.js file for inspiration
 
 ```javascript
@@ -85,7 +88,7 @@ p {
 }
 ```
 
-Would be changed to
+Is modified changed to
 ```css
 body {
     font-family: sans-serif;
