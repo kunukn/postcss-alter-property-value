@@ -20,7 +20,7 @@ module.exports = {
       },
       'font-size': {
         task: 'changeValue',        
-        to: '3rem',
+        to: '2rem',
       },
       'outline': { task: 'remove'},
       'border': {
