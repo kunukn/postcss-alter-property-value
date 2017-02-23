@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.0.4
+
+* Update description
+
 ### 1.0.3
 
 * Update readme
