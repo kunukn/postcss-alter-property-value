@@ -85,8 +85,8 @@ p {
     background: #fff;
     padding: 1rem;    
     color: dodgerblue;    
-    outline: 13px dashed red;     /* this will be remove */
-    border: 1px solid black;      /* this will be remove */
+    outline: 13px dashed red;     /* this will be removed */
+    border: 1px solid black;      /* this will be removed */
     display: inline-flex;
     transform: translateY(10px);
 }
