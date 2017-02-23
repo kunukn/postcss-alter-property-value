@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.0.3
+
+* Update readme
+
 ### 1.0.2
 
 * Fix typo in Readme
