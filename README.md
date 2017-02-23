@@ -2,13 +2,14 @@
 Alter your css declarations.
 
 # about
-A tool to change the css declarations
+A tool for changing css declarations with given configuration.
+
 * Change property name
 * Change value
 * Clone declaration with a new property name
 
 Usage examples. 
-* Simulate flexbox not working by disabling `display: flex`
+* Simulate flexbox not working by removing `display: flex`
 * Remove all `outline` usage
 * Correct property name `mouse: pointer` to `cursor: pointer`
 * Simplify `background: #ddd` to `background-color: #ddd` if the value is a hex color
@@ -119,4 +120,4 @@ p {
 * Git clone the project or download it
 * npm install
 * npm start
-* Open dev tools in browser and inspect the DOM
+* Open dev tools in browser and inspect the elements
