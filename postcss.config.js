@@ -3,10 +3,10 @@ module.exports = {
     require('./postcss-alter-property-value.js')(
       {
         config: {
-          addInfo: true,
+          addInfo: true, // add debug info
         },
         declarations: {
-          'border': '10px',          
+          'border': '10px',       
           'mouse': {
             task: 'changeProperty',
             to: 'cursor'

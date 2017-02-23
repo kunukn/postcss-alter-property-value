@@ -1,6 +1,6 @@
 {
   "name": "postcss-alter-property-value",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "postcss plugin which can alter css declarations with given configuration",
   "main": "postcss-alter-property-value.js",
   "scripts": {
