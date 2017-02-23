@@ -1,5 +1,5 @@
 # postcss alter property value
-Alter your css property names or values.
+Alter your css declarations.
 
 # about
 A tool to change the css declarations
