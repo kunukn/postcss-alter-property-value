@@ -4,7 +4,7 @@ body {
     mouse: pointer;
     max-width: 1200px;
     margin: 0 auto;
-    color: white;    
+    color: white;        
 }
 
 p {    
@@ -15,4 +15,5 @@ p {
     outline: 13px dashed blue;
     border: 1px solid black;
     display: inline-flex;
+    transform: translateY(10px);
 }

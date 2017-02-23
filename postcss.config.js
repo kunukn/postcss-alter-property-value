@@ -11,6 +11,10 @@ module.exports = {
             task: 'changeProperty',
             to: 'cursor'
           },
+          'transform': {
+            task: 'cloneBefore',
+            to: '-webkit-transform'
+          },             
           'display': {
             task: 'changeValue',
             to: 'flex',
