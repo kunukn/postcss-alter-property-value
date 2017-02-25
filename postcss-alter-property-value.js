@@ -13,9 +13,9 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
 
     props.map(function (prop, index) {
       root.walkDecls(prop, function (decl) {
-          var value = declarations[prop];
-          var copyProp = decl.prop + '';
-          var copyVal = decl.value + '';
+          var value = declarations[prop],
+              copyProp = decl.prop + '',
+              copyVal = decl.value + '';
 
           if (typeof value === 'string') {
             decl.value = value;
@@ -87,18 +87,20 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
   /* Helper utils */
 
   function regexParser(data) {
-    var value = data.value;
-    var decl = data.decl;
-    var whenRegex = value.whenRegex;
+    var value = data.value,
+        decl = data.decl,
+        whenRegex = value.whenRegex;
+
     if (whenRegex.value === undefined) {
       return; // nothing to do when value is not set
     }
-    var copyProp = decl.prop + '';
-    var copyVal = decl.value + '';
-    var task = value.task;
 
-    var regex = new RegExp(whenRegex.value, whenRegex.flags || '');
-    var mode = whenRegex.mode || 'fullReplace';
+    var copyProp = decl.prop + '',
+        copyVal = decl.value + '',
+        task = value.task;
+
+    var regex = new RegExp(whenRegex.value, whenRegex.flags || ''),
+        mode = whenRegex.mode || 'fullReplace';
 
     switch (task) {
       case 'disable':
@@ -130,7 +132,6 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
         }
         break;
     }
-
   }
 
   function hasNoFields(value) {
