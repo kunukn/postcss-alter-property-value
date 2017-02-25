@@ -1,18 +1,19 @@
 body {
-    font-family: sans-serif;
+    font-family: Helvetica;
     background: #FFD700;
     mouse: pointer;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     color: LightbluE;
 }
 
 p {    
     font-size: 1rem;
+    font-family: Arial;
     background: #fff;
     padding: 1rem;    
     color: dodgerblue;    
-    outline: 13px dashed red;
+    outline: 2px dashed red;
     border: 1px solid black;
     display: inline-flex;
     transform: translateY(10px);

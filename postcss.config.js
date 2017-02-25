@@ -6,30 +6,41 @@ module.exports = {
           addInfo: true, // add debug info
         },
         declarations: {
-          'border': '10px',       
+    
+          'font-family': 'sans-serif',   
           'mouse': {
             task: 'changeProperty',
             to: 'cursor'
           },
+          
+           
           'transform': {
             task: 'cloneBefore',
             to: '-webkit-transform'
-          },             
+          },
+                       
           'display': {
             task: 'changeValue',
             to: 'flex',
             whenValueEquals: 'inline-flex'
           },
+          
           'outline': { task: 'remove' },
+          
           'border': {
-            task: 'remove',
-            whenValueEquals: '1px solid black'
+            task: 'changeValue',
+            to: '#000',
+            whenRegex: {
+              mode: 'replace',
+              value: 'black',
+              flags: 'i',
+            },        
           },
           'color': {
             task: 'changeValue',
             to: 'orange',
             whenRegex: {
-              value: 'color$',
+              value: 'blue$',
               flags: 'i',
             },            
           },
@@ -45,7 +56,9 @@ module.exports = {
               flags: 'i',              
             },            
           },          
-        }
+      
+      } // end declarations 
+        
       }),
   ]
 }
