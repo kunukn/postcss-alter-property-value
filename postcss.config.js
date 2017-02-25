@@ -1,30 +1,38 @@
 module.exports = {
   plugins: [require('./postcss-alter-property-value.js')({
 
+      /* optional */
       config: {
-        addInfo: true, // add debug info
+        /* add debug info */
+        addInfo: true,
       },
 
+      /* required */
       declarations: {
-        'font-family': 'sans-serif', // set all properties with this value
+        /* set all font-families to this value */
+        'font-family': 'sans-serif',
         'mouse': {
+          /* replace all mouse properties with cursor */
           task: 'changeProperty',
-          to: 'cursor' // change all mouse properties with this property
+          to: 'cursor' 
         },
         'transform': {
-          task: 'cloneBefore', // add a clone before this declaration
-          to: '-webkit-transform' // with this property name
+          /* clone a declaration and add before this declaration */
+          task: 'cloneBefore', 
+          to: '-webkit-transform'
         },
         'display': {
+          /* conditional change value */
           task: 'changeValue',
           to: 'flex',
           whenValueEquals: 'inline-flex'
         },
         'outline': {
+          /* remove all outlines */
           task: 'remove'
         },
-        // e.g. border: 1px solid black -> border: 1px solid #000
         'border': {
+          /* border: 1px solid black -> border: 1px solid #000 */
           task: 'changeValue',
           to: '#000',
           whenRegex: {
@@ -34,19 +42,27 @@ module.exports = {
           }
         },
         'color': {
+          /* replace all color names ending with blue */
           task: 'changeValue',
           to: 'orange',
           whenRegex: {
-            /* mode: 'replace', // default mode */
             value: 'blue$',
             flags: 'i'
           }
         },
         'font-size': {
+          /* change to 2rem when value is a rem unit */
           task: 'changeValue',
-          to: '2rem'
+          to: '2rem',
+          whenRegex: {
+            mode: 'partial',
+            value: '[0-9]+rem', 
+            flags: 'i'
+          }
         },
         'background': {
+          /* simplify background to background-color 
+          if value is a hex */
           task: 'changeProperty',
           to: 'background-color',
           whenRegex: {
