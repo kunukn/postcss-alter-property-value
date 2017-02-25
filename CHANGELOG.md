@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.0.6
+
+* Add file.js example
+
 ### 1.0.5
 
 * Ability to replace part of a css short hand value 
