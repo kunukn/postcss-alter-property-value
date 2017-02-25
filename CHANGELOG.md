@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.0.5
+
+* Ability to replace part of a css short hand value 
+
 ### 1.0.4
 
 * Update description
@@ -17,5 +21,6 @@
 * Add clone to options
 
 ### 1.0.0
+
 * No changes, first version
 

@@ -99,8 +99,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
         copyVal = decl.value + '',
         task = value.task;
 
-    var regex = new RegExp(whenRegex.value, whenRegex.flags || ''),
-        mode = whenRegex.mode || 'fullReplace';
+    var regex = new RegExp(whenRegex.value, whenRegex.flags || '');
 
     switch (task) {
       case 'disable':
@@ -118,12 +117,13 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
         }
         break;
       case 'changeValue':
-        switch (mode) {
-          case 'replace':
+        switch (whenRegex.mode) {
+          case 'partial':
             decl.value = decl.value.replace(regex, value.to);
             addInfoToValue(decl, ' /* --papv - changeValue from [' + copyVal + '] */');
             break;
-          case 'fullReplace':
+          case 'replace':
+          default:
             if (regex.test(decl.value)) {
               decl.value = value.to;
               addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
