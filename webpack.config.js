@@ -29,10 +29,11 @@ module.exports = (env = {}) => {
             demo: ['./demo/index']
         },
         devServer: {
-            open: true,
+            //open: true,
             contentBase: './',
             noInfo: true,
             port: 3456,
+            inline: true,
         },        
         plugins: plugins,
         module: {
