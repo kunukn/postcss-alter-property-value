@@ -1,8 +1,12 @@
 const webpack = require('webpack'),
-    path = require('path'),    
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    papvConfiguration = require('./papv-configuration'),
+    papv = require('./postcss-alter-property-value');
 
 module.exports = (env = {}) => {
+
+    //    webpack.addDependency(papv);    delete require.cache[papv];
 
     const isProd = env.production === true;
     const nodeEnv = isProd
@@ -11,16 +15,13 @@ module.exports = (env = {}) => {
 
     console.log(`------------ ${nodeEnv} ------------`);
 
-  const plugins = [
+    const plugins = [
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(nodeEnv)
             }
         }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',            
-            template: 'demo/index.html',            
-        }),        
+        new HtmlWebpackPlugin({filename: 'index.html', template: 'demo/index.html'})
     ];
 
     return {
@@ -33,8 +34,8 @@ module.exports = (env = {}) => {
             contentBase: './',
             noInfo: true,
             port: 3456,
-            inline: true,
-        },        
+            inline: true
+        },
         plugins: plugins,
         module: {
             rules: [
@@ -42,16 +43,22 @@ module.exports = (env = {}) => {
                     test: /\.css$/,
                     use: [
                         'style-loader',
-                        'css-loader?importLoaders=1',
-                        'postcss-loader'
+                        'css-loader?importLoaders=1', {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: function () {
+                                    return [papv(papvConfiguration)];
+                                }
+                            }
+                        }
                     ],
-                    exclude: [/node_modules/],
-                },
+                    exclude: [/node_modules/]
+                }
             ]
         },
         resolve: {
             extensions: ['.js']
-        },        
+        },
         externals: {}
     }
 };

@@ -1,3 +1,4 @@
-require('./index.css');
+import './index.css';
 
-//require('../postcss-alter-property-value');
+//import papvConfiguration from '../papv-configuration';
+//import papv from '../postcss-alter-property-value';
