@@ -6,8 +6,6 @@ const webpack = require('webpack'),
 
 module.exports = (env = {}) => {
 
-    //    webpack.addDependency(papv);    delete require.cache[papv];
-
     const isProd = env.production === true;
     const nodeEnv = isProd
         ? 'production'
@@ -46,9 +44,9 @@ module.exports = (env = {}) => {
                         'css-loader?importLoaders=1', {
                             loader: 'postcss-loader',
                             options: {
-                                plugins: function () {
-                                    return [papv(papvConfiguration)];
-                                }
+                                // plugins:  (ctx) => {
+                                //     return [papv(papvConfiguration)];
+                                // }
                             }
                         }
                     ],
