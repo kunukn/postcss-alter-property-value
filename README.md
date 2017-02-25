@@ -4,14 +4,14 @@ Alter your css declarations.
 # about
 A tool for changing css declarations with given configuration.
 
-* Change property name
-* Change value
-* Clone declaration with a new property name
+* Change property names
+* Change values
+* Clone a declaration with a new property name
 
 Usage examples. 
 * Simulate flexbox not working by removing `display: flex`
 * Remove all `outline` usage
-* Correct property name `mouse: pointer` to `cursor: pointer`
+* Correct declaration `mouse: pointer` to `cursor: pointer`
 * Simplify `background: #ddd` to `background-color: #ddd` if the value is a hex color
 
 # npm
@@ -19,14 +19,14 @@ https://www.npmjs.com/package/postcss-alter-property-value
 
 
 # configuration example
-Check the postcss.config.js file for inspiration
+Check **papv-configuration.js** for inspiration.
 
 ```javascript
-{
+{	
   /* optional */
   config: {
     /* add debug info */
-    addInfo: true
+    addInfo: true,
   },
 
   /* required */
@@ -36,12 +36,12 @@ Check the postcss.config.js file for inspiration
     'mouse': {
       /* replace all mouse properties with cursor */
       task: 'changeProperty',
-      to: 'cursor'
+      to: 'cursor' 
     },
-    'font-size': {
-      /* change font-size to 2rem */
-      task: 'changeValue',
-      to: '2rem',
+    'transform': {
+      /* clone a declaration and add before this declaration */
+      task: 'cloneBefore', 
+      to: '-webkit-transform'
     },
     'display': {
       /* conditional change value */
@@ -53,28 +53,37 @@ Check the postcss.config.js file for inspiration
       /* remove all outlines */
       task: 'remove'
     },
-    'border': {
-      /* change border: 1px solid black
-            to border: 1px solid #000 */
-      task: 'changeValue',
-      to: '#000',
-      whenRegex: {
-        mode: 'partial',
-        value: 'black',
-        flags: 'i'
-      }
-    },
     'color': {
       /* replace all color names ending with blue */
       task: 'changeValue',
       to: 'orange',
       whenRegex: {
         value: 'blue$',
+        flags: 'i' // ignore case sensitivity
+      }
+    },
+    'font-size': {
+      /* change to 2rem when value is a rem unit */
+      task: 'changeValue',
+      to: '2rem',
+      whenRegex: {
+        value: 'rem', 
+        flags: 'i'
+      }
+    },
+    'border': {
+      /* change border: 1px solid black
+              to border: 1px solid #000 */
+      task: 'changeValue',
+      to: '#000',
+      whenRegex: {
+        mode: 'partial',
+        value: 'black', 
         flags: 'i'
       }
     },
     'background': {
-      /* simplify background to background-color
+      /* simplify background to background-color 
       if value is a hex */
       task: 'changeProperty',
       to: 'background-color',
@@ -82,15 +91,10 @@ Check the postcss.config.js file for inspiration
         value: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$',
         flags: 'i'
       }
-    },
-    'transform': {
-      /* clone this declaration 
-      and add before this declaration */
-      task: 'cloneBefore',
-      to: '-webkit-transform'
-    },
+    }
   } // end declarations
 }
+
 ```
 
 A css file with these rules
