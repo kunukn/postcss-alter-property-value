@@ -67,6 +67,18 @@ module.exports = {
         }
       }
     }, {
+      'border': {
+        /* change border: 1px solid black
+              to border: 2px solid black */
+        task: 'changeValue',
+        to: '2px',
+        whenRegex: {
+          mode: 'partial',
+          value: '1px',
+          flags: 'i'
+        }
+      }
+    }, {
       'background': {
         /* simplify background to background-color
       if value is a hex */

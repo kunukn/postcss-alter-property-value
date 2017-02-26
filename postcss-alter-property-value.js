@@ -21,7 +21,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
       }
     }
   });
-  //console.debug(lookup);
+  //console.log(lookup);
 
   return function (root, result) {
 
@@ -33,6 +33,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
             declarationParser({value: value, decl: decl});
           });
         }
+        //var allProperties = lookup['*'];
       });
   };
 
@@ -164,7 +165,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
   }
 
   function addInfoToValue(decl, str) {
-    if (config.addInfo) {
+    if (config.addInfo && !~decl.value.indexOf('/*')) {
       decl.value += str;
     }
   }
