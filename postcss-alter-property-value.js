@@ -21,90 +21,93 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
       }
     }
   });
+  //console.debug(lookup);
 
   return function (root, result) {
 
     root
       .walkDecls(function (decl) {
-        var copyProp = decl.prop + '',
-          copyVal = decl.value + '';
-
-        var lookupProp = lookup[copyProp];
+        var lookupProp = lookup[decl.prop + ''];
         if (lookupProp) {
-
           lookupProp.map((value, index) => {
-
-            if (typeof value === 'string') {
-              decl.value = value;
-              addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
-            } else if (typeof value === 'object' || value === undefined) {
-
-              if (!value) {
-                decl.prop = prop + '__papv__disable';
-              } else if (!value.task) {
-                // no task to do  if not set
-              } else {
-
-                if (value.whenRegex && typeof value.whenRegex === 'object') {
-                  regexParser({value: value, decl: decl});
-                } else {
-
-                  switch (value.task) {
-                    case 'remove':
-                      if (hasNoFields(value)) {
-                        decl.remove();
-                      } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
-                        decl.remove();
-                      }
-                      break;
-                    case 'cloneBefore':
-                      var node = decl.cloneBefore({prop: value.to});
-                      break;
-                    case 'cloneAfter':
-                      var node = decl.cloneAfter({prop: value.to});
-                      break;
-                    case 'disable':
-                      if (hasNoFields(value)) {
-                        decl.prop = prop + '__papv_disable';
-                      } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
-                        decl.prop = prop + '__papv_disable';
-                      }
-                      break;
-                    case 'changeProperty':
-                      if (hasNoFields(value)) {
-                        decl.prop = value.to;
-                        addInfoToValue(decl, ' /* papv - changeProp from [' + copyProp + '] */');
-                      } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
-                        decl.prop = value.to;
-                        addInfoToValue(decl, ' /* papv - changeProp from [' + copyProp + '] */');
-                      }
-                      break;
-                    case 'changeValue':
-                      if (hasNoFields(value)) {
-                        decl.value = value.to;
-                        addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
-                      } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
-                        decl.value = value.to;
-                        addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
-                      }
-                      break;
-
-                    default:
-                      result.warn('unknown task: [' + value.task + ']');
-                      break;
-                  }
-                }
-              }
-            }
+            declarationParser({value: value, decl: decl});
           });
-
         }
-
       });
-
   };
 
   /* Helper utils */
+
+  function declarationParser(data) {
+
+    var value = data.value;
+    var decl = data.decl;
+    var copyProp = decl.prop + '',
+        copyVal = decl.value + '';
+
+    if (typeof value === 'string') {
+      decl.value = value;
+      addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
+    } else if (typeof value === 'object' || value === undefined) {
+
+      if (!value) {
+        decl.prop = prop + '__papv__disable';
+      } else if (!value.task) {
+        // no task to do  if not set
+      } else {
+
+        if (value.whenRegex && typeof value.whenRegex === 'object') {
+          regexParser({value: value, decl: decl});
+        } else {
+
+          switch (value.task) {
+            case 'remove':
+              if (hasNoFields(value)) {
+                decl.remove();
+              } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
+                decl.remove();
+              }
+              break;
+            case 'cloneBefore':
+              var node = decl.cloneBefore({prop: value.to});
+              break;
+            case 'cloneAfter':
+              var node = decl.cloneAfter({prop: value.to});
+              break;
+            case 'disable':
+              if (hasNoFields(value)) {
+                decl.prop = prop + '__papv_disable';
+              } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
+                decl.prop = prop + '__papv_disable';
+              }
+              break;
+            case 'changeProperty':
+              if (hasNoFields(value)) {
+                decl.prop = value.to;
+                addInfoToValue(decl, ' /* papv - changeProp from [' + copyProp + '] */');
+              } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
+                decl.prop = value.to;
+                addInfoToValue(decl, ' /* papv - changeProp from [' + copyProp + '] */');
+              }
+              break;
+            case 'changeValue':
+              if (hasNoFields(value)) {
+                decl.value = value.to;
+                addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
+              } else if (value.whenValueEquals !== undefined && value.whenValueEquals === decl.value) {
+                decl.value = value.to;
+                addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
+              }
+              break;
+
+            default:
+              result.warn('unknown task: [' + value.task + ']');
+              break;
+          }
+        }
+      }
+    }
+  }
 
   function regexParser(data) {
     var value = data.value,
