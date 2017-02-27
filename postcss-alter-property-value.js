@@ -12,12 +12,19 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
     var props = Object.keys(declarations);
 
     props.map(function (prop, index) {
-      root.walkDecls(prop, function (decl) {
-        var value = declarations[prop];
-        declarationParser({ value: value, decl: decl });
-      });
+      if (prop === '*') {
+        root.walkDecls(function (decl) {
+          var value = declarations[prop];
+          declarationParser({ value: value, decl: decl });
+        });
+      }
+      else{
+        root.walkDecls(prop, function (decl) {
+          var value = declarations[prop];
+          declarationParser({ value: value, decl: decl });
+        });
+      }
     });
-
   };
 
   /* Helper utils */
@@ -26,7 +33,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
     if (Array.isArray(data.value)) {
       var valueArray = data.value;
       valueArray.map(function (value, index) {
-        data.value = value;        
+        data.value = value;
         declarationParserHelper(data);
       });
     }

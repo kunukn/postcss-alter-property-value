@@ -1,5 +1,10 @@
 ## Changelog
 
+### 1.1.0
+
+* Support list of tasks per property name
+* Add * property syntax in the configuration
+
 ### 1.0.6
 
 * Add file.js example

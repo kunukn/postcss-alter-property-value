@@ -7,9 +7,16 @@ module.exports =
     },
 
     /* required */
-    declarations: {
+    declarations: {      
+      '*': {
+        /* The *-property will evaluate all properties */
+        /* The tasks for *-property is always executed first */
+        task: 'changeValue',
+        to: 'translateY(2px)',
+        whenValueEquals: 'translateY(10px)'
+      },
       /* set all font-families to this value */
-      'font-family': 'sans-serif',
+      'font-family': 'sans-serif',                  
       'mouse': {
         /* replace all mouse properties with cursor */
         task: 'changeProperty',
@@ -49,6 +56,7 @@ module.exports =
         }
       },
       'border': [
+        /* list of task for border property */
         {
           /* change border: 1px solid black
                   to border: 1px solid #000 */
