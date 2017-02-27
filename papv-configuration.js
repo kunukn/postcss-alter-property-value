@@ -1,40 +1,35 @@
-module.exports = {
-  /* optional */
-  config: {
-    /* add debug info */
-    addInfo: true
-  },
+module.exports =
+  {
+    /* optional */
+    config: {
+      /* add debug info */
+      addInfo: true,
+    },
 
-  /* required */
-  declarations: [
-    /* set all font-families to this value */
-    {
-      'font-family': 'sans-serif'
-    }, {
+    /* required */
+    declarations: {
+      /* set all font-families to this value */
+      'font-family': 'sans-serif',
       'mouse': {
         /* replace all mouse properties with cursor */
         task: 'changeProperty',
         to: 'cursor'
-      }
-    }, {
+      },
       'transform': {
         /* clone a declaration and add before this declaration */
         task: 'cloneBefore',
         to: '-webkit-transform'
-      }
-    }, {
+      },
       'display': {
         /* conditional change value */
         task: 'changeValue',
         to: 'flex',
         whenValueEquals: 'inline-flex'
-      }
-    }, {
+      },
       'outline': {
         /* remove all outlines */
         task: 'remove'
-      }
-    }, {
+      },
       'color': {
         /* replace all color names ending with blue */
         task: 'changeValue',
@@ -43,8 +38,7 @@ module.exports = {
           value: 'blue$',
           flags: 'i' // ignore case sensitivity
         }
-      }
-    }, {
+      },
       'font-size': {
         /* change to 2rem when value is a rem unit */
         task: 'changeValue',
@@ -53,35 +47,33 @@ module.exports = {
           value: 'rem',
           flags: 'i'
         }
-      }
-    }, {
-      'border': {
-        /* change border: 1px solid black
-              to border: 1px solid #000 */
-        task: 'changeValue',
-        to: '#000',
-        whenRegex: {
-          mode: 'partial',
-          value: 'black',
-          flags: 'i'
+      },
+      'border': [
+        {
+          /* change border: 1px solid black
+                  to border: 1px solid #000 */
+          task: 'changeValue',
+          to: '#000',
+          whenRegex: {
+            mode: 'partial',
+            value: 'black',
+            flags: 'i'
+          },
+        }, {
+          /* change border: 1px solid #000
+                  to border: 2px solid #000 */
+          task: 'changeValue',
+          to: '2px',
+          whenRegex: {
+            mode: 'partial',
+            value: '1px',
+            flags: 'i'
+          }
         }
-      }
-    }, {
-      'border': {
-        /* change border: 1px solid black
-              to border: 2px solid black */
-        task: 'changeValue',
-        to: '2px',
-        whenRegex: {
-          mode: 'partial',
-          value: '1px',
-          flags: 'i'
-        }
-      }
-    }, {
+      ],
       'background': {
-        /* simplify background to background-color
-      if value is a hex */
+        /* simplify background to background-color 
+        if value is a hex */
         task: 'changeProperty',
         to: 'background-color',
         whenRegex: {
@@ -89,6 +81,5 @@ module.exports = {
           flags: 'i'
         }
       }
-    }
-  ] // end declarations
-}
+    } // end declarations
+  }

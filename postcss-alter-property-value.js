@@ -5,46 +5,41 @@ var postcss = require('postcss');
 
 module.exports = postcss.plugin('postcss-alter-property-value', function (options) {
   var options = options || {},
-    declarations = options.declarations || [],
+    declarations = options.declarations || {},
     config = options.config || {};
 
-  var lookup = {};
-  declarations.map((decl, index) => {
-    if (decl && typeof decl === 'object') {
-      var keys = Object.keys(decl);
-      if (keys.length) {
-        var key = keys[0];
-        if (!lookup[key]) {
-          lookup[key] = [];
-        }
-        lookup[key].push(declarations[index][key]);
-      }
-    }
-  });
-  //console.log(lookup);
-
   return function (root, result) {
+    var props = Object.keys(declarations);
 
-    root
-      .walkDecls(function (decl) {
-        var lookupProp = lookup[decl.prop + ''];
-        if (lookupProp) {
-          lookupProp.map((value, index) => {
-            declarationParser({value: value, decl: decl});
-          });
-        }
-        //var allProperties = lookup['*'];
+    props.map(function (prop, index) {
+      root.walkDecls(prop, function (decl) {
+        var value = declarations[prop];
+        declarationParser({ value: value, decl: decl });
       });
+    });
+
   };
 
   /* Helper utils */
 
   function declarationParser(data) {
+    if (Array.isArray(data.value)) {
+      var valueArray = data.value;
+      valueArray.map(function (value, index) {
+        data.value = value;        
+        declarationParserHelper(data);
+      });
+    }
+    else {
+      declarationParserHelper(data);
+    }
+  }
 
+  function declarationParserHelper(data) {
     var value = data.value;
     var decl = data.decl;
     var copyProp = decl.prop + '',
-        copyVal = decl.value + '';
+      copyVal = decl.value + '';
 
     if (typeof value === 'string') {
       decl.value = value;
@@ -58,7 +53,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
       } else {
 
         if (value.whenRegex && typeof value.whenRegex === 'object') {
-          regexParser({value: value, decl: decl});
+          regexParser({ value: value, decl: decl });
         } else {
 
           switch (value.task) {
@@ -70,10 +65,10 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
               }
               break;
             case 'cloneBefore':
-              var node = decl.cloneBefore({prop: value.to});
+              var node = decl.cloneBefore({ prop: value.to });
               break;
             case 'cloneAfter':
-              var node = decl.cloneAfter({prop: value.to});
+              var node = decl.cloneAfter({ prop: value.to });
               break;
             case 'disable':
               if (hasNoFields(value)) {
@@ -110,6 +105,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
     }
   }
 
+
   function regexParser(data) {
     var value = data.value,
       decl = data.decl,
@@ -127,11 +123,11 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
 
     switch (task) {
       case 'disable':
-        if (regex.test(decl.value)) 
+        if (regex.test(decl.value))
           decl.prop = prop + '__papv_disable';
         break;
       case 'remove':
-        if (regex.test(decl.value)) 
+        if (regex.test(decl.value))
           decl.remove();
         break;
       case 'changeProperty':
