@@ -1,11 +1,14 @@
 body {    
     background: white;
+    font-size: 10px;
 }
 
 .box{
-    color: white 
+    color: white;
+    font-size: 10px;
 }
 
 p {    
     background-color: white;
+    font-size: 10px;
 }
