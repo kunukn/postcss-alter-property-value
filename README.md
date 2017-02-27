@@ -82,7 +82,7 @@ Check **papv-configuration.js** for inspiration.
       }
     },
     'border': [
-      /* list of task for border property */
+      /* list of tasks for border property */
       {
         /* change border: 1px solid black
                 to border: 1px solid #000 */
