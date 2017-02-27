@@ -13,15 +13,13 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
 
     props.map(function (prop, index) {
       if (prop === '*') {
-        root.walkDecls(function (decl) {
-          var value = declarations[prop];
-          declarationParser({ value: value, decl: decl });
+        root.walkDecls(function (decl) {          
+          declarationParser({ value: declarations[prop], decl: decl });
         });
       }
       else{
-        root.walkDecls(prop, function (decl) {
-          var value = declarations[prop];
-          declarationParser({ value: value, decl: decl });
+        root.walkDecls(prop, function (decl) {          
+          declarationParser({ value: declarations[prop], decl: decl });
         });
       }
     });
@@ -43,10 +41,10 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
   }
 
   function declarationParserHelper(data) {
-    var value = data.value;
-    var decl = data.decl;
-    var copyProp = decl.prop + '',
-      copyVal = decl.value + '';
+    var value = data.value,
+        decl = data.decl,
+        copyProp = decl.prop + '',
+        copyVal = decl.value + '';
 
     if (typeof value === 'string') {
       decl.value = value;
@@ -56,7 +54,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
       if (!value) {
         decl.prop = prop + '__papv__disable';
       } else if (!value.task) {
-        // no task to do  if not set
+        // no task to do if not set, then don't do anything.
       } else {
 
         if (value.whenRegex && typeof value.whenRegex === 'object') {
@@ -123,8 +121,8 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
     }
 
     var copyProp = decl.prop + '',
-      copyVal = decl.value + '',
-      task = value.task;
+        copyVal = decl.value + '',
+        task = value.task;
 
     var regex = new RegExp(whenRegex.value, whenRegex.flags || '');
 
@@ -149,7 +147,7 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
             decl.value = decl
               .value
               .replace(regex, value.to);
-            addInfoToValue(decl, ' /* --papv - changeValue from [' + copyVal + '] */');
+            addInfoToValue(decl, ' /* papv - changeValue from [' + copyVal + '] */');
             break;
           case 'replace':
           default:
@@ -168,9 +166,13 @@ module.exports = postcss.plugin('postcss-alter-property-value', function (option
   }
 
   function addInfoToValue(decl, str) {
-    if (config.addInfo && !~decl.value.indexOf('/*')) {
+    if (config.addInfo && !containsString(decl.value, '/*')) {
       decl.value += str;
     }
+  }
+
+  function containsString(str, substr){
+    return str && ~str.indexOf(substr)
   }
 
 });
