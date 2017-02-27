@@ -13,6 +13,7 @@ Usage examples.
 * Remove all `outline` usage
 * Correct declaration `mouse: pointer` to `cursor: pointer`
 * Simplify `background: #ddd` to `background-color: #ddd` if the value is a hex color
+* For all properties, change value from 16px to 1rem
 
 # npm
 https://www.npmjs.com/package/postcss-alter-property-value
