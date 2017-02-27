@@ -22,7 +22,7 @@ https://www.npmjs.com/package/postcss-alter-property-value
 Check **papv-configuration.js** for inspiration.
 
 ```javascript
-{	
+{
   /* optional */
   config: {
     /* add debug info */
@@ -30,17 +30,24 @@ Check **papv-configuration.js** for inspiration.
   },
 
   /* required */
-  declarations: {
+  declarations: {      
+    '*': {
+      /* The *-property will evaluate all properties */
+      /* The tasks for *-property is always executed first */
+      task: 'changeValue',
+      to: 'translateY(2px)',
+      whenValueEquals: 'translateY(10px)'
+    },
     /* set all font-families to this value */
-    'font-family': 'sans-serif',
+    'font-family': 'sans-serif',                  
     'mouse': {
       /* replace all mouse properties with cursor */
       task: 'changeProperty',
-      to: 'cursor' 
+      to: 'cursor'
     },
     'transform': {
       /* clone a declaration and add before this declaration */
-      task: 'cloneBefore', 
+      task: 'cloneBefore',
       to: '-webkit-transform'
     },
     'display': {
@@ -67,21 +74,34 @@ Check **papv-configuration.js** for inspiration.
       task: 'changeValue',
       to: '2rem',
       whenRegex: {
-        value: 'rem', 
+        value: 'rem',
         flags: 'i'
       }
     },
-    'border': {
-      /* change border: 1px solid black
-              to border: 1px solid #000 */
-      task: 'changeValue',
-      to: '#000',
-      whenRegex: {
-        mode: 'partial',
-        value: 'black', 
-        flags: 'i'
+    'border': [
+      /* list of task for border property */
+      {
+        /* change border: 1px solid black
+                to border: 1px solid #000 */
+        task: 'changeValue',
+        to: '#000',
+        whenRegex: {
+          mode: 'partial',
+          value: 'black',
+          flags: 'i'
+        },
+      }, {
+        /* change border: 1px solid #000
+                to border: 2px solid #000 */
+        task: 'changeValue',
+        to: '2px',
+        whenRegex: {
+          mode: 'partial',
+          value: '1px',
+          flags: 'i'
+        }
       }
-    },
+    ],
     'background': {
       /* simplify background to background-color 
       if value is a hex */
@@ -94,7 +114,6 @@ Check **papv-configuration.js** for inspiration.
     }
   } // end declarations
 }
-
 ```
 
 A css file with these rules
@@ -118,7 +137,7 @@ p {
     outline: 2px dashed red;
     border: 1px solid black;
     display: inline-flex;
-    transform: translateY(10px);
+    transform: translateY(10px);    
 }
 ```
 
@@ -134,15 +153,15 @@ body {
 }
 
 p {    
-    font-size: 2rem /* --papv - changeValue from [1rem] */;
+    font-size: 2rem /* papv - changeValue from [1rem] */;
     font-family: sans-serif /* papv - changeValue from [Arial] */;
     background-color: #fff /* papv - changeProp from [background] */;
     padding: 1rem;
     color: orange /* papv - changeValue from [dodgerblue] */;
-    border: 1px solid #000 /* --papv - changeValue from [1px solid black] */;
+    border: 2px solid #000 /* --papv - changeValue from [1px solid black] */;
     display: flex /* papv - changeValue from [inline-flex] */;
-    -webkit-transform: translateY(10px);
-    transform: translateY(10px);
+    -webkit-transform: translateY(2px) /* papv - changeValue from [translateY(10px)] */;
+    transform: translateY(2px) /* papv - changeValue from [translateY(10px)] */;
 }
 ```
 
