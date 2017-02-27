@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.1.1
+
+* Minor documentation updates and code commenting
+
 ### 1.1.0
 
 * Support list of tasks per property name
