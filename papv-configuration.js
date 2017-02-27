@@ -9,8 +9,10 @@ module.exports =
     /* required */
     declarations: {      
       '*': {
-        /* The *-property will evaluate all properties */
-        /* The tasks for *-property is always executed first */
+      /* The *-property will evaluate all properties 
+         The tasks for *-property is always executed first.
+         This is a relative expensive task, I recommend to only use this if you must.
+      */
         task: 'changeValue',
         to: 'translateY(2px)',
         whenValueEquals: 'translateY(10px)'

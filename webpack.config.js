@@ -28,7 +28,7 @@ module.exports = (env = {}) => {
             demo: ['./demo/index']
         },
         devServer: {
-            //open: true,
+            //open: true, // auto open browser?
             contentBase: './',
             noInfo: true,
             port: 3456,
@@ -43,11 +43,12 @@ module.exports = (env = {}) => {
                         'style-loader',
                         'css-loader?importLoaders=1', {
                             loader: 'postcss-loader',
-                            //options: {
-                                // plugins:  (ctx) => {
-                                //     return [papv(papvConfiguration)];
-                                // }
-                            //}
+                            // options: {
+                            //     /* use postcss.config.js or this, not both */
+                            //     plugins:  (ctx) => {
+                            //         return [papv(papvConfiguration)];
+                            //     }
+                            // }
                         }
                     ],
                     exclude: [/node_modules/]
