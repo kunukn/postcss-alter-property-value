@@ -43,11 +43,11 @@ module.exports = (env = {}) => {
                         'style-loader',
                         'css-loader?importLoaders=1', {
                             loader: 'postcss-loader',
-                            options: {
+                            //options: {
                                 // plugins:  (ctx) => {
                                 //     return [papv(papvConfiguration)];
                                 // }
-                            }
+                            //}
                         }
                     ],
                     exclude: [/node_modules/]
