@@ -20,7 +20,7 @@ https://www.npmjs.com/package/postcss-alter-property-value
 
 
 # configuration example
-Check **papv-configuration.js** for inspiration.
+Check **postcss.config.js** for inspiration.
 
 ```javascript
 {
