@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.1.2
+
+* Refactor config files to make webpack hot reloading work on config editing
+
 ### 1.1.1
 
 * Minor documentation updates and code commenting

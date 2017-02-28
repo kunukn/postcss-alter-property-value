@@ -1,6 +1,6 @@
 {
   "name": "postcss-alter-property-value",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "postcss-alter-property-value.js",
   "scripts": {
