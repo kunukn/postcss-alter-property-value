@@ -207,7 +207,7 @@ fs.readFile('my.css', (err, css) => {
 ```
 
 Run in console/terminal 
-where my.css is going to be updated to my-new.css
+where `my-new.css` is generated from `my.css` and given configuration.
 
 `node css-changes.js`
 
