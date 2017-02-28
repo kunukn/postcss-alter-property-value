@@ -1,13 +1,13 @@
 const fs = require('fs');
 const postcss = require('postcss');
-const papvConfiguration = require( '../papv-configuration');
-const papv = require('../postcss-alter-property-value');
+const plugin = require('../postcss-alter-property-value');
+const configuration = require( '../papv-configuration');
 
 fs.readFile('index.css', (err, css) => {
-    postcss([papv(papvConfiguration)])
-        .process(css, { from: 'index.css', to: 'index.papv.css' })
+    postcss([plugin(configuration)])
+        .process(css, { from: 'index.css', to: 'index.out.css' })
         .then(result => {
-            fs.writeFile('index.papv.css', result.css);
-            if ( result.map ) fs.writeFile('index.papv.css.map', result.map);
+            fs.writeFile('index.out.css', result.css);
+            if ( result.map ) fs.writeFile('index.out.css.map', result.map);
         });
 });

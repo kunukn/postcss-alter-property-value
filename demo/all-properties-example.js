@@ -6,7 +6,7 @@ const fs = require('fs');
 const postcss = require('postcss');
 
 const plugin = require('../postcss-alter-property-value');
-const pluginConfiguration = {
+const configuration = {
     declarations: {
         '*': [
             {
@@ -24,7 +24,7 @@ const pluginConfiguration = {
 };
 
 fs.readFile('all-properties-example.css', (err, css) => {
-    postcss([plugin(pluginConfiguration)])
+    postcss([plugin(configuration)])
         .process(css, { from: 'all-properties-example.css', to: 'all-properties-example.out.css' })
         .then(result => {
             //console.log(result.css);
