@@ -186,8 +186,8 @@ p {
 ```javascript
 const fs = require('fs');
 const postcss = require('postcss');
-const papv = require('postcss-alter-property-value');
-const papvConfiguration = {
+const plugin = require('postcss-alter-property-value');
+const configuration = {
     /* your configuration */
     declarations: {
         'background-color': {
@@ -198,7 +198,7 @@ const papvConfiguration = {
     }
 };
 fs.readFile('my.css', (err, css) => {
-    postcss([papv(papvConfiguration)])
+    postcss([plugin(configuration)])
         .process(css, { from: 'my.css', to: 'my-new.css' })
         .then(result => {
             fs.writeFile('my-new.css', result.css);
