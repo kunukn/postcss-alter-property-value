@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.1.3
+
+* Add keywords to package.json
+
 ### 1.1.2
 
 * Refactor config files to make webpack hot reloading work on config editing
