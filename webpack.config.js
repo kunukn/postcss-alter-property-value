@@ -44,7 +44,10 @@ module.exports = (env = {}) => {
                         'css-loader?importLoaders=1', {
                             loader: 'postcss-loader',
                             // options: {
-                            //     /* use postcss.config.js or this, not both */
+                            //     /* 
+                            //     use postcss.config.js 
+                            //     if you want hot reload changes
+                            //      */
                             //     plugins:  (ctx) => {
                             //         return [papv(papvConfiguration)];
                             //     }
