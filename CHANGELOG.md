@@ -3,6 +3,7 @@
 ### 1.1.3
 
 * Add keywords to package.json
+* Add unit tests
 
 ### 1.1.2
 

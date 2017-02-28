@@ -1,12 +1,12 @@
 /* run in console/terminal:
-   node all-properties-test.js
+   node all-properties-example.js
 */
 
 const fs = require('fs');
 const postcss = require('postcss');
 
-const papv = require('../postcss-alter-property-value');
-const papvConfiguration = {
+const plugin = require('../postcss-alter-property-value');
+const pluginConfiguration = {
     declarations: {
         '*': [
             {
@@ -24,10 +24,10 @@ const papvConfiguration = {
 };
 
 fs.readFile('all-properties-example.css', (err, css) => {
-    postcss([papv(papvConfiguration)])
-        .process(css, { from: 'all-properties-example.css', to: 'all-properties-example.papv.css' })
+    postcss([plugin(pluginConfiguration)])
+        .process(css, { from: 'all-properties-example.css', to: 'all-properties-example.out.css' })
         .then(result => {
             //console.log(result.css);
-            fs.writeFile('all-properties-example.papv.css', result.css);
+            fs.writeFile('all-properties-example.out.css', result.css);
         });
 });

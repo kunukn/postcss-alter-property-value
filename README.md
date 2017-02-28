@@ -2,7 +2,7 @@
 Alter your css declarations.
 
 # about
-A tool for changing css declarations with given configuration.
+A tool for changing css declarations from a rule based configuration.
 
 * Change property names
 * Change values
