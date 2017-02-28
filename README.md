@@ -174,6 +174,9 @@ p {
 * Git clone the project or download it
 * npm install
 * npm start
+* Open a browser and go to http://localhost:3456/
+* Insert your styles in demo/index.css
+* Open and make changes to the configuration in postcss.config.js
 * Open dev tools in browser and inspect the elements
 
 # command line usage example
