@@ -23,10 +23,11 @@ const papvConfiguration = {
     }
 };
 
-fs.readFile('all-properties-test.css', (err, css) => {
+fs.readFile('all-properties-example.css', (err, css) => {
     postcss([papv(papvConfiguration)])
-        .process(css, { from: 'all-properties-test.css', to: 'all-properties-test.papv.css' })
+        .process(css, { from: 'all-properties-example.css', to: 'all-properties-example.papv.css' })
         .then(result => {
-            fs.writeFile('all-properties-test.papv.css', result.css);
+            //console.log(result.css);
+            fs.writeFile('all-properties-example.papv.css', result.css);
         });
 });
