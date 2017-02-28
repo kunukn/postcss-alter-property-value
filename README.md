@@ -185,6 +185,7 @@ const fs = require('fs');
 const postcss = require('postcss');
 const papv = require('postcss-alter-property-value');
 const papvConfiguration = {
+    /* your configuration */
     declarations: {
         'background-color': {
                 task: 'changeValue',
@@ -202,6 +203,8 @@ fs.readFile('my.css', (err, css) => {
 });
 ```
 
-Run in console/terminal where my.css is going to be updated to my-new.css
+Run in console/terminal 
+where my.css is going to be updated to my-new.css
+
 `node css-changes.js`
 
