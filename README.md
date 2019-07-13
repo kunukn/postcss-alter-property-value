@@ -1,8 +1,8 @@
 # postcss alter property value
-Alter your css declarations.
+Alter your CSS declarations.
 
 # about
-A tool for changing css declarations from a rule based configuration.
+A tool for changing CSS declarations from a rule based configuration.
 
 * Change property names
 * Change values
@@ -119,7 +119,7 @@ Check **postcss.config.js** for inspiration.
 }
 ```
 
-A css file with these rules
+A CSS file with these rules
 
 ```css
 body {
